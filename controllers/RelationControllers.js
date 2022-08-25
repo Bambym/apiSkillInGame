@@ -2,6 +2,7 @@ const Relation = require ("../models/Relation")
 
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op
+const {UniqueConstraintError} = require('sequelize')
 
 exports.getFriendsUser = async (req ,res) => {
     try {
@@ -71,7 +72,12 @@ exports.setRelation = async (req, res) => {
       console.log(req.body)
       const relation = await Relation.create({...req.body});
       res.status(201).json({msg : "created ressources"})
-  } catch (err) {
-    console.log(err);
+  } catch (errors) {
+    console.log(errors.message);
+    if(errors instanceof UniqueConstraintError){
+      return res.status(400).json({message: errors.message, data : errors })
+              
+    }
+   
   }
 };

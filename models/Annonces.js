@@ -50,24 +50,7 @@ const Annonce = sequelize.define("annonces", {
 });
 
 
-// Annonce.belongsTo(User,{as:"ID_user",foreignKey:"ID_user",sourceKey:"ID_user"})
-// User.hasMany(Annonce,{foreignKey:"ID_user",targetKey:"ID_user"})
-// Annonce.associate = (models) => {
-//   Annonce.belongsTo(models.User, {
-    
-//     foreignKey: "ID_user",
-//     sourceKey: "ID_user",
-   
-  
-//   });
-// };
-// Annonce.associate = (models) => {
-//   Annonce.belongsTo(models.Jeu, {
-//     foreignKey: "ID_jeu",
-//     sourceKey: "ID_jeu",
-//     onDelete: "cascade",
-//   });
-// };
+
 Annonce.belongsTo(Jeu,{foreignKey:"ID_jeu",sourceKey:"ID_jeu"})
 Jeu.hasMany(Annonce,{foreignKey:"ID_jeu",targetKey:"ID_jeu"})
 Console.hasMany(Annonce,{foreignKey:"ID_console",targetKey:"ID_console"})

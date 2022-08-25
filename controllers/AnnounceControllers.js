@@ -32,8 +32,8 @@ exports.getAllAnnounces = async (req, res) => {
 exports.getAllAnnouncesOneGame = async (req, res) => {
   try {
     const announces = await Annonce.findAll({
-      include: [User],
       where: { ID_jeu: req.params.jeuId },
+      include: [{model:Game},{model:User},{model:Console}],
     });
     res.send(announces);
   } catch (err) {

@@ -17,6 +17,7 @@ const Relation = sequelize.define("relation", {
   id_receveur: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique:true,
 
   },
   statut:{
@@ -30,9 +31,23 @@ const Relation = sequelize.define("relation", {
     type: DataTypes.DATE,
   },
   
-}, {
+}, 
+{
+  indexes:[
+    {
+      unique:true,
+      fields:["id_demandeur","id_receveur"],
+      
+    }
+  ],
   tableName: 'relation'
-})
+  
+  
+}
+
+);
+
+
 
 
 module.exports = Relation ;
